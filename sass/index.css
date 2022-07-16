@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-top: 3rem;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-position: center;
+}
+body .btn {
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+body .btn .btn:active {
+  transform: scale(0.98);
+}
+
+.note {
+  margin: 30px 20px;
+  height: 250px;
+  width: 400px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+}
+.note .tools {
+  background-color: #0d6efd;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.note .tools > * {
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+}
+.note textarea {
+  font-family: inherit;
+  font-size: 1.2rem;
+  height: 200px;
+  width: 100%;
+  padding: 20px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+}
+
+.main {
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=index.css.map */

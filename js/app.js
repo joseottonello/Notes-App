@@ -1,44 +1,61 @@
 const addBtn = document.getElementById('add')  
- const notes = JSON.parse(localStorage.getItem('notes'))  
- if(notes) {  
+const notes = JSON.parse(localStorage.getItem('notes'))  
+
+if(notes) {  
    notes.forEach(note => addNewNote(note))  
- }  
- addBtn.addEventListener('click', () => addNewNote())  
- function addNewNote(text = '') {  
-   const note = document.createElement('div')  
-   note.classList.add('note')  
-   note.innerHTML = `  
-   <div class="tools">  
-     <button class="edit"><i class="fas fa-edit"></i></button>  
-     <button class="delete"><i class="fas fa-trash-alt"></i></button>  
-   </div>  
-   <div class="main ${text ? "" : "hidden"}"></div>  
-   <textarea class="${text ? "hidden" : ""}"></textarea>  
-   `  
-   const editBtn = note.querySelector('.edit')  
-   const deleteBtn = note.querySelector('.delete')  
-   const main = note.querySelector('.main')  
-   const textArea = note.querySelector('textarea')  
-   textArea.value = text  
-   main.innerHTML = marked(text)  
-   deleteBtn.addEventListener('click', () => {  
-     note.remove()  
-     updateLS()  
-   })  
-   editBtn.addEventListener('click', () => {  
-     main.classList.toggle('hidden')  
-     textArea.classList.toggle('hidden')  
-   })  
-   textArea.addEventListener('input', (e) => {  
-     const { value } = e.target  
-     main.innerHTML = marked(value)  
-     updateLS()  
-   })  
-   document.body.appendChild(note)  
- }  
- function updateLS() {  
-   const notesText = document.querySelectorAll('textarea')  
-   const notes = []  
-   notesText.forEach(note => notes.push(note.value))  
-   localStorage.setItem('notes', JSON.stringify(notes))  
- }  
+}
+
+addBtn.addEventListener('click', () => addNewNote())  
+    function addNewNote(text = '') {  
+        const note = document.createElement('div')  
+        note.classList.add('note')  
+        note.innerHTML = `  
+        <div class="tools">  
+                <button class="edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                </button>  
+                <button class="delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </button>  
+        </div>  
+        <div class="main ${text ? "" : "hidden"}"></div>  
+        <textarea class="${text ? "hidden" : ""}"></textarea>  
+        `  
+        const editBtn = note.querySelector('.edit')  
+        const deleteBtn = note.querySelector('.delete')  
+        const main = note.querySelector('.main')  
+        const textArea = note.querySelector('textarea')  
+        textArea.value = text  
+        main.innerHTML = marked(text)  
+        
+        deleteBtn.addEventListener('click', () => {  
+            note.remove()  
+            updateLS()  
+        })  
+        
+        editBtn.addEventListener('click', () => {  
+            main.classList.toggle('hidden')  
+            textArea.classList.toggle('hidden')  
+        })  
+            
+        textArea.addEventListener('input', (e) => {  
+            const { value } = e.target  
+            main.innerHTML = marked(value)  
+            updateLS()  
+        })  
+        
+        document.body.appendChild(note)  
+    }  
+    
+    function updateLS() {  
+        const notesText = document.querySelectorAll('textarea')  
+        const notes = []  
+        notesText.forEach(note => notes.push(note.value))  
+        localStorage.setItem('notes', JSON.stringify(notes))  
+    }  
